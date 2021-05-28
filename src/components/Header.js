@@ -21,7 +21,7 @@ function Header() {
 export default Header
 
 
-const Container = styled.section`
+const Container = styled.div`
     width: 100%;
 `
 
@@ -29,12 +29,15 @@ const NavBar = styled.nav`
     height: 70px;
     background: rgba(0, 0, 0, 0.8);
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     display: flex;
     align-items: center;
     p {
         color: #fff;
-        font-size: 20px;
+        font-size: 18px;
+        font-weight: 600;
         text-transform: uppercase;
         padding: 0 20px;
     }
@@ -57,7 +60,7 @@ const Icon = styled.div `
         }
 
         &:hover {
-            transform: scale(1.1, 1.1);
+            transform: scale(1.2, 1.2);
         }
     }
 
