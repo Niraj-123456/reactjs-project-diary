@@ -6,6 +6,13 @@ function Header() {
         <Container>
             <NavBar>
                 <p>My JavaScript Project Diary</p>
+                <Icon>
+                    <a href="#"><i className="fab fa-facebook"></i></a>
+                    <a href="#"><i className="fab fa-instagram "></i></a>
+                    <a href="#"><i className="fab fa-twitter"></i></a>
+                    <a href="#"><i className="fab fa-github"></i></a>
+                    <a href="#"><i className="fab fa-linkedin"></i></a>
+                </Icon>
             </NavBar>
         </Container>
     )
@@ -20,13 +27,38 @@ const Container = styled.section`
 
 const NavBar = styled.nav`
     height: 70px;
-    background-color: #000;
-    
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    display: flex;
+    align-items: center;
     p {
         color: #fff;
         font-size: 20px;
         text-transform: uppercase;
-        margin: 0;
-        padding: 20px 0;
+        padding: 0 20px;
     }
+`
+
+const Icon = styled.div `
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    margin: 0 15px;
+
+    a {
+        text-decoration: none;
+        padding: 5px 10px;
+        transition: all 0.2s ease-in;
+
+        i {
+            font-size: 25px;
+            color: #fff;
+        }
+
+        &:hover {
+            transform: scale(1.1, 1.1);
+        }
+    }
+
 `

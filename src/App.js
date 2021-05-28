@@ -1,4 +1,4 @@
-import './App.css';
+// import './App.css';
 import Home from './components/Home'
 import styled from 'styled-components'
 
