@@ -1,23 +1,23 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import TicTacToe from './TicTacToe'
+import TicTacToe from './tictactoe/TicTacToe'
 
 class Home extends Component {
-    state = {
-        pressed: false,
-    }
+    // state = {
+    //     pressed: false,
+    // }
 
-    onBoxSelected = () => {
-        this.setState((prevState, prevProps) => {
-            return { pressed: !prevState.pressed }  
-        });
-        console.log(this.state.pressed);
-    }
+    // onBoxSelected = () => {
+    //     this.setState((prevState, prevProps) => {
+    //         return { pressed: !prevState.pressed }  
+    //     });
+    //     console.log(this.state.pressed);
+    // }
 
     render() {
         return (
             <Container>
-                <TicTacToe onBoxSelected={ this.onBoxSelected } />
+                <TicTacToe />
             </Container>
         )
     }
