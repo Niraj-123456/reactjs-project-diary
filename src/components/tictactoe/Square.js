@@ -13,8 +13,8 @@ function Square(props) {
 export default Square
 
 const Content = styled.div`
-    width: 100%;
-    margin: auto;
+    /* width: 100%;
+    margin: auto; */
 
     button {
         height: 150px;
