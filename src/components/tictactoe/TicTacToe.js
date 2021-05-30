@@ -75,14 +75,14 @@ class TicTacToe extends Component {
             )
         })
         let status;
-        if(winner && winner !== 'draw') {
+        if(winner) {
             status = 'winner is: ' + winner;
             console.log('winner is', winner); 
-        } else if(this.state.stepNumber === finalMove) {
-            status = 'Draw';
-        }
-        else {
+        } else {
             status = 'Next Player: ' + (this.state.xIsNext ? 'X' : 'O');
+            if(winner === undefined && this.state.stepNumber === finalMove) {
+                status = 'Draw';
+            }
         }
         return (
             <Container>
@@ -110,6 +110,7 @@ export default TicTacToe
 const Container  = styled.div`
     width: 100%;
     margin-top: 50px;
+    border: solid 1px #fff;
 
     h2, p {
         color: #fff;

@@ -1,26 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import TicTacToe from './tictactoe/TicTacToe'
+import Clock from './timer/Clock'
 
-class Home extends Component {
-    // state = {
-    //     pressed: false,
-    // }
-
-    // onBoxSelected = () => {
-    //     this.setState((prevState, prevProps) => {
-    //         return { pressed: !prevState.pressed }  
-    //     });
-    //     console.log(this.state.pressed);
-    // }
-
-    render() {
-        return (
-            <Container>
-                <TicTacToe />
-            </Container>
-        )
-    }
+function Home() {
+    return (
+        <Container>
+            <TicTacToe />
+            <Clock />
+        </Container>
+    )
 }
 
 export default Home
