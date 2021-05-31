@@ -47,7 +47,6 @@ const Container = styled.div`
     color: #fff;
     text-align: center;
     margin-top: 100px;
-    border: solid 1px #fff;
 
     h4 {
         font-size: 50px;

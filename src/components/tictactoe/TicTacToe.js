@@ -29,8 +29,6 @@ class TicTacToe extends Component {
           const [a, b, c] = lines[i];
           if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
             return squares[a];
-          } else if(!squares.includes(null)) {
-              return 'draw';
           }
         }
         return null;
@@ -80,7 +78,7 @@ class TicTacToe extends Component {
             console.log('winner is', winner); 
         } else {
             status = 'Next Player: ' + (this.state.xIsNext ? 'X' : 'O');
-            if(winner === undefined && this.state.stepNumber === finalMove) {
+            if(this.state.stepNumber === finalMove) {
                 status = 'Draw';
             }
         }
@@ -110,7 +108,6 @@ export default TicTacToe
 const Container  = styled.div`
     width: 100%;
     margin-top: 50px;
-    border: solid 1px #fff;
 
     h2, p {
         color: #fff;

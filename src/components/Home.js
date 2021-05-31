@@ -2,12 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import TicTacToe from './tictactoe/TicTacToe'
 import Clock from './timer/Clock'
+import Timer from './stopwatch/Timer'
 
 function Home() {
     return (
         <Container>
             <TicTacToe />
             <Clock />
+            <Timer />
         </Container>
     )
 }
