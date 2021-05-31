@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import TicTacToe from './tictactoe/TicTacToe'
 import Clock from './timer/Clock'
 import Timer from './stopwatch/Timer'
+import Todo from './todoapp/Todo'
 
 function Home() {
     return (
@@ -10,6 +11,7 @@ function Home() {
             <TicTacToe />
             <Clock />
             <Timer />
+            <Todo />
         </Container>
     )
 }

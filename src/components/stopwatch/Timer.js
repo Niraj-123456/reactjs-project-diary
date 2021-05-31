@@ -6,6 +6,8 @@ function Timer() {
     const [counter, setCounter] = useState(60);
 
     useEffect(() => {
+        // if counter is greater than or equals to 0 apply setTimeout function
+        // else counter is 0 set it back to 60
         counter >= 0 ? setTimeout(() => setCounter(counter - 1), 1000) : 
         setCounter(60);
     }, [counter])
