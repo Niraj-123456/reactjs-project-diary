@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import ToDoLists from './ToDoLists'
 
 function Todo() {
 
@@ -13,8 +14,19 @@ function Todo() {
     const handleClick = () => {
         setLists((oldLists) => {
             return [...oldLists, inputList]
+        });
+        setInputList(' ');
+    }
+    const onDeleteSelected = (id) => {
+        console.log("Item Deleted")
+
+        setLists((oldLists) => {
+            return oldLists.filter((itemArr, index) => {
+                return index !== id;
+            })
         })
     }
+
     return (
         <Container>
             <h4>Todo App</h4>
@@ -23,14 +35,20 @@ function Todo() {
                     <h5>Todo App</h5>
                 </Header>
                 <Form>
-                    <input type="text" placeholder="Enter a todo" onChange={inputTextAction}/>
+                    <input type="text" placeholder="Enter a todo" value={inputList} onChange={inputTextAction}/>
                     <button onClick={ handleClick }>+</button>
                 </Form>
                 <ToDoList>
                     <ul>
                         {
-                            lists.map((value, key) => {
-                                return <li key={key}>{value}</li>
+                            lists.map((item, id) => {
+                                return (
+                                    <ToDoLists 
+                                    key={id} 
+                                    id={id} 
+                                    value={item}
+                                    onDelete={onDeleteSelected} />
+                                )
                             })
                         }
                     </ul>
@@ -78,7 +96,7 @@ const Header = styled.div`
     }
 `
 
-const Form = styled.form`
+const Form = styled.div`
     position: absolute;
     width: 100%;
     top: 150px;
@@ -114,11 +132,10 @@ const Form = styled.form`
 
 const ToDoList = styled.div`
     position: absolute;
+    left: 0;
     top: 200px;
-    width: 100%;
+    width: 80%;
     margin-top: 20px;
-    border: solid 1px #000;
-    color: black;
 
     ul {
         list-style: none;
