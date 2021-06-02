@@ -1,13 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 function Blackjack() {
+
+    const [rand, setRand] = useState(1)
+
+    const randomNum = () => {
+        setRand(Math.floor((Math.random() * 13) + 1));
+        console.log("Hit Pressed", rand)
+        return rand;
+    }
+
+    // const cardGenerator = () => {
+        
+    // }
+
     return (
         <Container>
             <h4>BlackJack Game</h4>
             <Wrapper>
                 <PlayerOne>
-                    <Card>
+                    <Card>  
                         <img src="images/cards/A.png" alt="A" />
                         <img src="images/cards/2.png" alt="2" />
                         <img src="images/cards/3.png" alt="3" />
@@ -23,7 +36,7 @@ function Blackjack() {
                     </Card>
                 </PlayerTwo>
                 <Buttons>
-                    <button style={{background: 'green'}}>Hit</button>
+                    <button style={{background: 'green'}} onClick={randomNum}>Hit</button>
                     <button style={{background: 'yellow'}}>Check</button>
                     <button style={{background: 'red'}}>Reset</button>
                 </Buttons>
