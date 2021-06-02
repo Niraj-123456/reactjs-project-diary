@@ -4,6 +4,7 @@ import TicTacToe from './tictactoe/TicTacToe'
 import Clock from './timer/Clock'
 import Timer from './stopwatch/Timer'
 import Todo from './todoapp/Todo'
+import Blackjack from './blackjack/Blackjack'
 
 function Home() {
     return (
@@ -12,6 +13,7 @@ function Home() {
             <Clock />
             <Timer />
             <Todo />
+            <Blackjack />
         </Container>
     )
 }

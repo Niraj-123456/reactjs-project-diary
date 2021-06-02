@@ -27,13 +27,14 @@ const Container = styled.div`
 
 const NavBar = styled.nav`
     height: 70px;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.9);
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     display: flex;
     align-items: center;
+
     p {
         color: #fff;
         font-size: 18px;

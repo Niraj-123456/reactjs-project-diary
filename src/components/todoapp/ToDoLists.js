@@ -32,6 +32,7 @@ const List = styled.div`
 
             &:hover {
                 transform: scale(0.9, 0.9);
+                color: crimson;
             }
         }
 `

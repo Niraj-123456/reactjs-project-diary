@@ -15,7 +15,7 @@ function Todo() {
         setLists((oldLists) => {
             return [...oldLists, inputList]
         });
-        setInputList(' ');
+        setInputList('');
     }
     const onDeleteSelected = (id) => {
         console.log("Item Deleted")
@@ -35,7 +35,7 @@ function Todo() {
                     <h5>Todo App</h5>
                 </Header>
                 <Form>
-                    <input type="text" placeholder="Enter a todo" value={inputList} onChange={inputTextAction}/>
+                    <input type="text" value={inputList} onChange={inputTextAction} placeholder="Enter a todo..."/>
                     <button onClick={ handleClick }>+</button>
                 </Form>
                 <ToDoList>
