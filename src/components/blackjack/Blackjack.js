@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import Card from './Card'
 
 function Blackjack() {
 
-    const [rand, setRand] = useState(1)
+    const [rand, setRand] = useState(1);
+    const [cardImg, setCardImg] = useState([]);
 
     const randomNum = () => {
         setRand(Math.floor((Math.random() * 13) + 1));
@@ -11,32 +13,43 @@ function Blackjack() {
         return rand;
     }
 
-    // const cardGenerator = () => {
-        
-    // }
+    const cardGenerator = () => {
+        randomNum();
+        setCardImg((oldCard) => {
+            return[...oldCard, rand]
+        })
+    }
 
     return (
         <Container>
             <h4>BlackJack Game</h4>
             <Wrapper>
                 <PlayerOne>
-                    <Card>  
-                        <img src="images/cards/A.png" alt="A" />
+                    <CardSec>  
+                        {/* <img src="images/cards/A.png" alt="A" />
                         <img src="images/cards/2.png" alt="2" />
                         <img src="images/cards/3.png" alt="3" />
-                        <img src="images/cards/4_2.png" alt="4" />
-                    </Card>
+                        <img src="images/cards/4_2.png" alt="4" /> */}
+                        {
+                            cardImg.map((card, id) => {
+                                console.log(card);
+                                return(
+                                    <Card key={id} value={card}/>
+                                )
+                            })
+                        }
+                    </CardSec>
                 </PlayerOne>
                 <PlayerTwo>
-                    <Card>
+                    <CardSec>
                         <img src="images/cards/5_2.png" alt="5" />
                         <img src="images/cards/6.png" alt="6" />
                         <img src="images/cards/7.png" alt="7" />
                         <img src="images/cards/8.png" alt="8" />
-                    </Card>
+                    </CardSec>
                 </PlayerTwo>
                 <Buttons>
-                    <button style={{background: 'green'}} onClick={randomNum}>Hit</button>
+                    <button style={{background: 'green'}} onClick={cardGenerator}>Hit</button>
                     <button style={{background: 'yellow'}}>Check</button>
                     <button style={{background: 'red'}}>Reset</button>
                 </Buttons>
@@ -92,7 +105,7 @@ const PlayerTwo = styled(PlayerOne)`
 
 `
 
-const Card = styled.div`
+const CardSec = styled.div`
     margin-top: 100px;
     width: 100%;
     display: flex;
