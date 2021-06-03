@@ -5,27 +5,43 @@ import Card2 from './Card2'
 
 function Blackjack() {
 
+    // Random number generator
     const randNumGen = () => {
         let randNumber = Math.floor((Math.random() * 13) + 1)
         return randNumber;
     }
 
+    const cards = { '1': 'A', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', 
+                    '10': '10', '11': 'J', '12': 'Q', '13': 'K' }
+
     const [rand, setRand] = useState(randNumGen());
     const [cardImg, setCardImg] = useState([]);
     const [cardImg2, setCardImg2] = useState([]);
+    const [sum, setSum] = useState(0);
 
 
     const randomNum = () => {
         setRand(randNumGen());
     }
 
+    // Calculate the total sum of value of card
+    // const cardSum = () => {
+    //     setSum(sum + rand)
+    // }
+
+    // Human player card generator
     const cardGenerator = () => {
         randomNum();
         setCardImg((oldCard) => {
             return[...oldCard, rand]
         })
+
+        setSum(sum + rand)
     }
 
+    console.log(sum);
+
+    // Computer player card generator
     const cardGenerator2 = () => {
         randomNum();
         setCardImg2((oldCard) => {
@@ -38,12 +54,12 @@ function Blackjack() {
             <h4>BlackJack Game</h4>
             <Wrapper>
                 <PlayerOne>
+                    <p>{sum <= 21 ? sum : 'Burst'}</p>
                     <CardSec>  
                         {
                             cardImg.map((card, id) => {
-                                console.log(card);
                                 return(
-                                    <Card key={id} value={card}/>
+                                    <Card key={id} value={card} sum={sum}/>
                                 )
                             })
                         }
