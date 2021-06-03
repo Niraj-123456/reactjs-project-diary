@@ -1,21 +1,34 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import Card from './Card'
+import Card2 from './Card2'
 
 function Blackjack() {
 
-    const [rand, setRand] = useState(1);
+    const randNumGen = () => {
+        let randNumber = Math.floor((Math.random() * 13) + 1)
+        return randNumber;
+    }
+
+    const [rand, setRand] = useState(randNumGen());
     const [cardImg, setCardImg] = useState([]);
+    const [cardImg2, setCardImg2] = useState([]);
+
 
     const randomNum = () => {
-        setRand(Math.floor((Math.random() * 13) + 1));
-        console.log("Hit Pressed", rand)
-        return rand;
+        setRand(randNumGen());
     }
 
     const cardGenerator = () => {
         randomNum();
         setCardImg((oldCard) => {
+            return[...oldCard, rand]
+        })
+    }
+
+    const cardGenerator2 = () => {
+        randomNum();
+        setCardImg2((oldCard) => {
             return[...oldCard, rand]
         })
     }
@@ -26,10 +39,6 @@ function Blackjack() {
             <Wrapper>
                 <PlayerOne>
                     <CardSec>  
-                        {/* <img src="images/cards/A.png" alt="A" />
-                        <img src="images/cards/2.png" alt="2" />
-                        <img src="images/cards/3.png" alt="3" />
-                        <img src="images/cards/4_2.png" alt="4" /> */}
                         {
                             cardImg.map((card, id) => {
                                 console.log(card);
@@ -42,15 +51,19 @@ function Blackjack() {
                 </PlayerOne>
                 <PlayerTwo>
                     <CardSec>
-                        <img src="images/cards/5_2.png" alt="5" />
-                        <img src="images/cards/6.png" alt="6" />
-                        <img src="images/cards/7.png" alt="7" />
-                        <img src="images/cards/8.png" alt="8" />
+                        {
+                            cardImg2.map((card, id) => {
+                                console.log(card);
+                                return(
+                                    <Card2 key={id} value={card}/>
+                                )
+                            })
+                        }
                     </CardSec>
                 </PlayerTwo>
                 <Buttons>
                     <button style={{background: 'green'}} onClick={cardGenerator}>Hit</button>
-                    <button style={{background: 'yellow'}}>Check</button>
+                    <button style={{background: 'yellow'}} onClick={cardGenerator2}>Check</button>
                     <button style={{background: 'red'}}>Reset</button>
                 </Buttons>
             </Wrapper>
@@ -92,6 +105,7 @@ const PlayerOne = styled.div`
         bottom: 0px;
         left: 0px;
         content: '';
+        width: 100%;
         border: solid 1px #fff;
         background-image: url('https://wallpaperaccess.com/full/2434380.jpg');
         background-position: center;

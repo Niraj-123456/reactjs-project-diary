@@ -34,6 +34,7 @@ const NavBar = styled.nav`
     width: 100%;
     display: flex;
     align-items: center;
+    z-index: 1;
 
     p {
         color: #fff;
