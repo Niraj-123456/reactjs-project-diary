@@ -22,32 +22,48 @@ function Blackjack() {
         setRand(randNumGen());
     }
 
-    // Human player card generator
-    const cardGenerator = () => {
-        randomNum();
-        setCardImg((oldCard) => {
-            return[...oldCard, rand]
-        })
-
-        setSum(sum + rand);
-    }
-
-    // Score checker
-    const scoreChecker = () => {
-        if(sum2 <= 21) {
-            setSum2(sum2 + rand);
+    // Score Checker for human player
+    const scoreChecker1 = () => {
+        if(sum <= 21) {
+            return setSum(sum + rand);
         } else {
             return;
         }
     }
-    
+
+    // Human player card generator
+    const cardGenerator = () => {
+        randomNum();
+        scoreChecker1();
+        if(sum <= 21) {
+            setCardImg((oldCard) => {
+                return[...oldCard, rand]
+            })
+        } else {
+            return;
+        }
+    }
+
+    // Score checker for computer player
+    const scoreChecker2 = () => {
+        if(sum2 <= 21) {
+            return setSum2(sum2 + rand);
+        } else {
+            return;
+        }
+    }
+
     // Computer player card generator
     const cardGenerator2 = () => {
         randomNum();
-        scoreChecker();
-        setCardImg2((oldCard) => {
-            return[...oldCard, rand]
-        })
+        scoreChecker2();
+        if(sum2 <= 21) {
+            setCardImg2((oldCard) => {
+               return [...oldCard, rand]
+            })
+            } else {
+                return ' ';
+            }
     }
 
     const resetGame = () => {
@@ -65,7 +81,7 @@ function Blackjack() {
                     <p>Score: {sum <= 21 ? sum : 'Burst'}</p>
                     <CardSec>  
                         {
-                            cardImg.map((card, id) => {
+                            !cardImg ? 'null' : cardImg.map((card, id) => {
                                 return(
                                     <Card key={id} value={card} sum={sum}/>
                                 )
@@ -77,7 +93,7 @@ function Blackjack() {
                     <p>Score: {sum2 <= 21 ? sum2 : 'Burst'}</p>
                     <CardSec>
                         {
-                            cardImg2.map((card, id) => {
+                            !cardImg ? ' ' : cardImg2.map((card, id) => {
                                 return(
                                     <Card2 key={id} value={card}/>
                                 )
