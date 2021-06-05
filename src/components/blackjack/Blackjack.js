@@ -11,23 +11,16 @@ function Blackjack() {
         return randNumber;
     }
 
-    const cards = { '1': 'A', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', 
-                    '10': '10', '11': 'J', '12': 'Q', '13': 'K' }
-
     const [rand, setRand] = useState(randNumGen());
     const [cardImg, setCardImg] = useState([]);
     const [cardImg2, setCardImg2] = useState([]);
     const [sum, setSum] = useState(0);
+    const [sum2, setSum2] = useState(0);
 
 
     const randomNum = () => {
         setRand(randNumGen());
     }
-
-    // Calculate the total sum of value of card
-    // const cardSum = () => {
-    //     setSum(sum + rand)
-    // }
 
     // Human player card generator
     const cardGenerator = () => {
@@ -36,17 +29,32 @@ function Blackjack() {
             return[...oldCard, rand]
         })
 
-        setSum(sum + rand)
+        setSum(sum + rand);
     }
 
-    console.log(sum);
-
+    // Score checker
+    const scoreChecker = () => {
+        if(sum2 <= 21) {
+            setSum2(sum2 + rand);
+        } else {
+            return;
+        }
+    }
+    
     // Computer player card generator
     const cardGenerator2 = () => {
         randomNum();
+        scoreChecker();
         setCardImg2((oldCard) => {
             return[...oldCard, rand]
         })
+    }
+
+    const resetGame = () => {
+        setSum(0)
+        setSum2(0)
+        setCardImg([])
+        setCardImg2([])
     }
 
     return (
@@ -54,7 +62,7 @@ function Blackjack() {
             <h4>BlackJack Game</h4>
             <Wrapper>
                 <PlayerOne>
-                    <p>{sum <= 21 ? sum : 'Burst'}</p>
+                    <p>Score: {sum <= 21 ? sum : 'Burst'}</p>
                     <CardSec>  
                         {
                             cardImg.map((card, id) => {
@@ -66,10 +74,10 @@ function Blackjack() {
                     </CardSec>
                 </PlayerOne>
                 <PlayerTwo>
+                    <p>Score: {sum2 <= 21 ? sum2 : 'Burst'}</p>
                     <CardSec>
                         {
                             cardImg2.map((card, id) => {
-                                console.log(card);
                                 return(
                                     <Card2 key={id} value={card}/>
                                 )
@@ -80,7 +88,7 @@ function Blackjack() {
                 <Buttons>
                     <button style={{background: 'green'}} onClick={cardGenerator}>Hit</button>
                     <button style={{background: 'yellow'}} onClick={cardGenerator2}>Check</button>
-                    <button style={{background: 'red'}}>Reset</button>
+                    <button style={{background: 'red'}} onClick={resetGame}>Reset</button>
                 </Buttons>
             </Wrapper>
         </Container>
