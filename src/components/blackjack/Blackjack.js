@@ -11,9 +11,9 @@ function Blackjack() {
         return randNumber;
     }
 
-    // function sleep(ms) {
-    //     return new Promise(resolve => setTimeout(resolve, ms));
-    // }
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 
     const [rand, setRand] = useState(randNumGen());
     const [cardImg, setCardImg] = useState([]);
@@ -24,6 +24,9 @@ function Blackjack() {
     const [btn2, setBtn2] = useState(true);
     const [btn3, setBtn3] = useState(true);
     const [winner, setWinner] = useState('');
+    const [wins, setWins] = useState(0);
+    const [losses, setLosses] = useState(0);
+    const [draw, setDraw] = useState(0);
 
 
     const randomNum = () => {
@@ -38,7 +41,6 @@ function Blackjack() {
             return;
         }
     }
-    console.log(sum)
 
     // Human player card generator
     const cardGenerator = () => {
@@ -62,16 +64,16 @@ function Blackjack() {
             return;
         }
     }
-    console.log(sum2)
 
     // Computer player card generator
- function cardGenerator2() {
+    async function cardGenerator2() {
         randomNum();
-        if(sum2 < 16 && btn2 === false) {   
+        if(sum2 < 16 && btn2 === false) {
             setCardImg2((oldCard) => {
                 return [...oldCard, rand]
-                }) ;
-                scoreChecker2();   
+                });
+                scoreChecker2();
+                await sleep(1000);
         }else {
             computerWinner();
             setBtn1(true);
@@ -80,24 +82,26 @@ function Blackjack() {
        return;   
     }
 
+    console.log(sum2)
+
     const computerWinner = () => {
         if(sum <= 21) {
             if(sum > sum2 || sum2 > 21) {
                 setWinner("You Won");
-                console.log("You Won")
+                setWins(wins + 1);
             } else if(sum < sum2) {
                 setWinner("Computer Won");
-                console.log("Computer Won")
+                setLosses(losses + 1);
             } else if(sum === sum2) {
                 setWinner("Draw");
-                console.log("Draw")
+                setDraw(draw + 1);
             }
         } else if(sum > 21 && sum2 <= 21) {
             setWinner("Computer Won");
-            console.log("Computer Won!")
+            setLosses(losses + 1);
         } else if(sum > 21 && sum2 > 21) {
             setWinner("Draw");
-            console.log("Draw")
+            setDraw(draw + 1);
         } 
     }
 
@@ -146,6 +150,24 @@ function Blackjack() {
                     <button style={{background: 'yellow'}} onClick={cardGenerator2} disabled={btn2}>Check</button>
                     <button style={{background: 'red'}} onClick={resetGame} disabled={btn3}>Reset</button>
                 </Buttons>
+                <ScoreBoard>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Wins</th>
+                                <th>Losses</th>
+                                <th>Draw</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{wins}</td>
+                                <td>{losses}</td>
+                                <td>{draw}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ScoreBoard>
             </Wrapper>
         </Container>
     )
@@ -237,5 +259,24 @@ const Buttons = styled.div`
         &:hover {
             transform: scale(1.1, 1.1);
         }
+    }
+`
+
+const ScoreBoard = styled.div`
+    width: 20%;
+    margin: auto;
+    height: 80px;
+    grid-column: 1 / span 2;
+
+    table, th, td {
+        text-align: center;
+        border: solid 1px #fff;
+        border-collapse: collapse;
+        width: 100%;
+        height: 100%;
+    }
+
+    th, td {
+        width: 100px;
     }
 `
