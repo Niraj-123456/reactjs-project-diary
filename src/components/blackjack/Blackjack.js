@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Card from './Card'
 import Card2 from './Card2'
+import Scoreboard from './Scoreboard'
 
 function Blackjack() {
 
@@ -122,7 +123,7 @@ function Blackjack() {
             <p>{winner ? winner: ''}</p>
             <Wrapper>
                 <PlayerOne>
-                    <p>Score: {sum <= 21 ? sum : 'BUST'}</p>
+                    <p>Score: {sum <= 21 ? sum : <span>BUST</span>}</p>
                     <CardSec>  
                         {
                             !cardImg ? 'null' : cardImg.map((card, id) => {
@@ -134,7 +135,7 @@ function Blackjack() {
                     </CardSec>
                 </PlayerOne>
                 <PlayerTwo>
-                    <p>Score: {sum2 <= 21 ? sum2 : 'BUST'}</p>
+                    <p>Score: {sum2 <= 21 ? sum2 : <span>BUST</span>}</p>
                     <CardSec>
                         {
                             !cardImg ? ' ' : cardImg2.map((card, id) => {
@@ -151,22 +152,7 @@ function Blackjack() {
                     <button style={{background: 'red'}} onClick={resetGame} disabled={btn3}>Reset</button>
                 </Buttons>
                 <ScoreBoard>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Wins</th>
-                                <th>Losses</th>
-                                <th>Draw</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{wins}</td>
-                                <td>{losses}</td>
-                                <td>{draw}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <Scoreboard wins={wins} losses={losses} draw={draw}/>
                 </ScoreBoard>
             </Wrapper>
         </Container>
@@ -214,6 +200,13 @@ const PlayerOne = styled.div`
         background-repeat: no-repeat;
         background-size: cover;
         opacity: 0.2;
+    }
+
+    p {
+
+        span {
+            color: red;
+        }
     }
 `
 
